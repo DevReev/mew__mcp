@@ -491,7 +491,9 @@ def generate_srk_flirty_fallback(message: str, your_name: str = None, context: s
 # --- Run MCP Server ---
 async def main():
     print("🚀 Starting MCP server on http://0.0.0.0:8086")
-    await mcp.run_async("streamable-http", host="0.0.0.0", port=8086)
+    port = int(os.environ.get("PORT", 8086))
+    await mcp.run_async("streamable-http", host="0.0.0.0", port=port)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
